@@ -2,3 +2,9 @@ package: github.com/yudapc/go-gorm-tutorial
 import:
 - package: github.com/jinzhu/gorm
   version: v1.9.11
+  subpackages:
+  - dialects/sqlite
+- package: github.com/jinzhu/inflection
+  version: v1.0.0
+- package: github.com/mattn/go-sqlite3
+  version: v2.0.1

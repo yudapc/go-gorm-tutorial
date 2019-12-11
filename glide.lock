@@ -1,6 +1,12 @@
-hash: 4c1f8c31fdc4cd774edfa8eb80180fe4970d0f69fca8667fb6d5953fcf887e75
-updated: 2019-12-11T11:20:34.999336+07:00
+hash: 766c289c2add240aeb0abaa6b2bbe6d6b045a3bb109752c8ac373732f7ff25d7
+updated: 2019-12-11T11:32:08.716364+07:00
 imports:
 - name: github.com/jinzhu/gorm
   version: 81c17a7e2529c59efc4e74c5b32c1fb71fb12fa2
+  subpackages:
+  - dialects/sqlite
+- name: github.com/jinzhu/inflection
+  version: f5c5f50e6090ae76a29240b61ae2a90dd810112e
+- name: github.com/mattn/go-sqlite3
+  version: 590d44c02bca83987d23f6eab75e6d0ddf95f644
 testImports: []
