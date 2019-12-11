@@ -27,11 +27,11 @@ type CreditCard struct {
 	DeletedAt *time.Time `json:"deleted_at"`
 	Number    string     `json:"number"`
 	UserRefer uint       `json:"user_refer"`
+	User      *User      `gorm:"foreignkey:UserRefer" json:"user"`
 }
 
 func main() {
 	fmt.Println("Running...")
-	fmt.Println("==============================================")
 
 	// Database connection
 	db, err := gorm.Open("sqlite3", "test.db")
@@ -49,8 +49,8 @@ func main() {
 
 	// Read user with nested credit cards
 	getUserById(db, 1)
+	getCreditCardByNumber(db, "321")
 
-	fmt.Println("==============================================")
 	fmt.Println("Done!")
 }
 
@@ -72,7 +72,17 @@ func seed(db *gorm.DB) {
 func getUserById(db *gorm.DB, id uint) {
 	var user User
 	db.Preload("CreditCards").Find(&user, 1)
+	response(user, "user detail")
+}
 
-	response, _ := json.Marshal(user)
-	fmt.Println(string(response))
+func getCreditCardByNumber(db *gorm.DB, number string) {
+	var creditCard CreditCard
+	db.Preload("User").Find(&creditCard, "number = ?", number)
+	response(creditCard, "credit card")
+}
+
+func response(data interface{}, info string) {
+	fmt.Println("==============================================")
+	res, _ := json.Marshal(data)
+	fmt.Println(info, ":", string(res))
 }
